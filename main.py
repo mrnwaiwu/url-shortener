@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, Response
 from pydantic import BaseModel, HttpUrl
 import redis
+import qrcode
+import io
 import os
 import secrets
 import string
@@ -11,8 +13,8 @@ load_dotenv()
 
 app = FastAPI(
     title="URL Shortener",
-    description="Shorten URLs with click tracking, powered by Redis",
-    version="1.0.0",
+    description="Shorten URLs with click tracking and QR code generation, powered by Redis",
+    version="2.0.0",
 )
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
@@ -35,7 +37,7 @@ class ShortenRequest(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "URL Shortener API", "docs": "/docs"}
+    return {"message": "URL Shortener API v2", "docs": "/docs"}
 
 
 @app.post("/shorten", status_code=201)
@@ -62,6 +64,7 @@ async def shorten_url(req: ShortenRequest):
 
     return {
         "short_url": f"{BASE_URL}/{code}",
+        "qr_code": f"{BASE_URL}/qr/{code}",
         "code": code,
         "original_url": url_str,
         "expires_in_seconds": URL_TTL,
@@ -81,10 +84,37 @@ async def get_stats(code: str):
     return {
         "code": code,
         "short_url": f"{BASE_URL}/{code}",
+        "qr_code": f"{BASE_URL}/qr/{code}",
         "original_url": original,
         "clicks": clicks,
         "ttl_seconds": ttl,
     }
+
+
+@app.get("/qr/{code}")
+async def get_qr_code(code: str):
+    """Generate and return a QR code PNG for the short URL."""
+    original = r.get(f"url:{code}")
+    if not original:
+        raise HTTPException(status_code=404, detail="Short URL not found or expired")
+
+    short_url = f"{BASE_URL}/{code}"
+
+    img = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    img.add_data(short_url)
+    img.make(fit=True)
+    pil_img = img.make_image(fill_color="black", back_color="white")
+
+    buf = io.BytesIO()
+    pil_img.save(buf, format="PNG")
+    buf.seek(0)
+
+    return Response(content=buf.read(), media_type="image/png")
 
 
 @app.delete("/{code}")

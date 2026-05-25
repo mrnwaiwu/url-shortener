@@ -1,11 +1,12 @@
 # URL Shortener
 
-A FastAPI URL shortener backed by Redis with click tracking and TTL expiry.
+A FastAPI URL shortener backed by Redis with click tracking, TTL expiry, and QR code generation.
 
 ## Features
 
 - Shorten any URL to a random 6-character code
 - Optional custom short codes
+- **QR code generation** — returns a PNG for any short link
 - Click counter per short URL
 - Configurable TTL (links auto-expire)
 - Docker Compose setup included
@@ -13,22 +14,14 @@ A FastAPI URL shortener backed by Redis with click tracking and TTL expiry.
 ## Quick Start (local)
 
 ```bash
-# Start Redis
 docker run -d -p 6379:6379 redis:7-alpine
 
-# Clone and install
 git clone https://github.com/mrnwaiwu/url-shortener.git
 cd url-shortener
 pip install -r requirements.txt
-
-# Configure
 cp .env.example .env
-
-# Run
 uvicorn main:app --reload
 ```
-
-API docs at `http://localhost:8000/docs`
 
 ## Quick Start (Docker Compose)
 
@@ -44,6 +37,7 @@ docker compose up --build
 | POST | `/shorten` | Create a short URL |
 | GET | `/{code}` | Redirect to original URL |
 | GET | `/stats/{code}` | Click count and TTL |
+| GET | `/qr/{code}` | Download QR code PNG |
 | DELETE | `/{code}` | Delete a short URL |
 
 ### Shorten a URL
@@ -51,25 +45,26 @@ docker compose up --build
 ```bash
 curl -X POST http://localhost:8000/shorten \
   -H 'Content-Type: application/json' \
-  -d '{"url": "https://example.com/very/long/path"}'
+  -d '{"url": "https://github.com/mrnwaiwu"}'
 ```
 
 ```json
 {
   "short_url": "http://localhost:8000/aB3xYz",
+  "qr_code": "http://localhost:8000/qr/aB3xYz",
   "code": "aB3xYz",
-  "original_url": "https://example.com/very/long/path",
+  "original_url": "https://github.com/mrnwaiwu",
   "expires_in_seconds": 86400
 }
 ```
 
-### Custom code
+### Get QR code
 
 ```bash
-curl -X POST http://localhost:8000/shorten \
-  -H 'Content-Type: application/json' \
-  -d '{"url": "https://github.com/mrnwaiwu", "custom_code": "github"}'
+curl http://localhost:8000/qr/aB3xYz --output qr.png
 ```
+
+Or open `http://localhost:8000/qr/aB3xYz` directly in your browser.
 
 ## Environment Variables
 
