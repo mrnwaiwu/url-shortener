@@ -4,6 +4,11 @@
 - Planned: click analytics per shortened URL
 - Planned: expiry TTL option per link
 
+## [1.2.0] - 2026-05-27
+- Added rate limiting middleware to prevent abuse
+- Improved error messages for invalid URLs
+- Minor performance improvements to Redis lookup
+
 ## [1.1.0] - 2026-05-25
 - Added QR code generation endpoint
 
