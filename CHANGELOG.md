@@ -4,6 +4,11 @@
 - Planned: click analytics per shortened URL
 - Planned: expiry TTL option per link
 
+## [1.2.1] - 2026-05-30
+- Added slug collision retry logic with configurable max attempts
+- Improved validation for custom alias inputs (length, charset)
+- Updated docs with curl examples for all endpoints
+
 ## [1.2.0] - 2026-05-27
 - Added rate limiting middleware to prevent abuse
 - Improved error messages for invalid URLs
