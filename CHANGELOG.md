@@ -4,6 +4,11 @@
 - Planned: click analytics per shortened URL
 - Planned: expiry TTL option per link
 
+## [1.2.2] - 2026-06-02
+- Added configurable redirect response code (301 vs 302) per link
+- Improved health check endpoint to include Redis connectivity status
+- Minor code cleanup and dependency version bumps
+
 ## [1.2.1] - 2026-05-30
 - Added slug collision retry logic with configurable max attempts
 - Improved validation for custom alias inputs (length, charset)
