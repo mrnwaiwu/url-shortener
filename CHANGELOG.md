@@ -4,6 +4,11 @@
 - Planned: click analytics per shortened URL
 - Planned: expiry TTL option per link
 
+## [1.2.3] - 2026-06-09
+- Added link preview endpoint returning title, description, and OG image metadata
+- Improved slug generation to avoid visually ambiguous characters (0/O, l/1)
+- Minor documentation updates and test coverage improvements
+
 ## [1.2.2] - 2026-06-02
 - Added configurable redirect response code (301 vs 302) per link
 - Improved health check endpoint to include Redis connectivity status
