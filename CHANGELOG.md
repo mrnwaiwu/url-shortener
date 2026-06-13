@@ -3,6 +3,8 @@
 ## [Unreleased]
 - Planned: click analytics per shortened URL
 - Planned: expiry TTL option per link
+- Planned: user-facing dashboard for link management
+- Planned: webhook support for link-click events
 
 ## [1.2.4] - 2026-06-13
 - Added bulk URL shortening endpoint accepting JSON array of URLs
