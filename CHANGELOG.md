@@ -4,6 +4,11 @@
 - Planned: click analytics per shortened URL
 - Planned: expiry TTL option per link
 
+## [1.2.4] - 2026-06-13
+- Added bulk URL shortening endpoint accepting JSON array of URLs
+- Improved Redis key expiry handling for TTL-based links
+- Minor test coverage improvements for edge cases
+
 ## [1.2.3] - 2026-06-09
 - Added link preview endpoint returning title, description, and OG image metadata
 - Improved slug generation to avoid visually ambiguous characters (0/O, l/1)
