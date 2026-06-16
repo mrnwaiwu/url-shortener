@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.2.5] - 2026-06-16
+- Added structured logging for redirect lookups to aid debugging
+- Improved input normalization to strip tracking query parameters on opt-in
+- Minor test coverage improvements for slug collision handling
+
 ## [1.2.4] - 2026-06-13
 - Added bulk URL shortening endpoint accepting JSON array of URLs
 - Improved Redis key expiry handling for TTL-based links
