@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.2.6] - 2026-06-23
+- Added geolocation-based redirect support (optional, opt-in per link)
+- Improved slug uniqueness validation to handle concurrent creation requests
+- Minor test coverage improvements for the bulk shortening endpoint
+
 ## [1.2.5] - 2026-06-16
 - Added structured logging for redirect lookups to aid debugging
 - Improved input normalization to strip tracking query parameters on opt-in
