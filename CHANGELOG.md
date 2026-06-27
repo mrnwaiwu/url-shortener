@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.2.7] - 2026-06-27
+- Added optional password-protection for shortened links
+- Improved redirect performance by caching hot slugs in local memory layer
+- Minor refactor of slug generation to improve readability and testability
+
 ## [1.2.6] - 2026-06-23
 - Added geolocation-based redirect support (optional, opt-in per link)
 - Improved slug uniqueness validation to handle concurrent creation requests
