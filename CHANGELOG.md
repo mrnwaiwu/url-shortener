@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.2.8] - 2026-06-27
+- Added audit log endpoint to surface recent shortening and click activity
+- Improved slug validation to reject reserved words and common path conflicts
+- Minor refactor of redirect handler to reduce middleware latency
+
 ## [1.2.7] - 2026-06-27
 - Added optional password-protection for shortened links
 - Improved redirect performance by caching hot slugs in local memory layer
