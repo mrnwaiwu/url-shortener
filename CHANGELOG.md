@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.2.9] - 2026-06-30
+- Added per-link click-count endpoint returning total and unique visitor counts
+- Improved slug lookup to return 410 Gone for explicitly deleted links instead of 404
+- Minor cleanup of Redis connection pooling configuration for improved reliability
+
 ## [1.2.8] - 2026-06-27
 - Added audit log endpoint to surface recent shortening and click activity
 - Improved slug validation to reject reserved words and common path conflicts
