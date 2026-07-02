@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.3.0] - 2026-07-02
+- Added custom domain support allowing shortened links to use user-provided hostnames
+- Improved click analytics to include referrer tracking and device-type breakdown
+- Minor performance improvements to slug resolution under high concurrency
+
 ## [1.2.9] - 2026-06-30
 - Added per-link click-count endpoint returning total and unique visitor counts
 - Improved slug lookup to return 410 Gone for explicitly deleted links instead of 404
