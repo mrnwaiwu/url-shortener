@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.3.1] - 2026-07-09
+- Added configurable slug length via environment variable for shorter or longer codes
+- Improved error responses to include a machine-readable error code field
+- Minor refactor of the Redis client wrapper to simplify connection retry logic
+
 ## [1.3.0] - 2026-07-02
 - Added custom domain support allowing shortened links to use user-provided hostnames
 - Improved click analytics to include referrer tracking and device-type breakdown
