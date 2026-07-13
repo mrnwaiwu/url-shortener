@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.3.2] - 2026-07-13
+- Added optional link aliasing via user-provided vanity slugs with conflict detection
+- Improved redirect latency by pre-warming slug cache on service startup
+- Minor cleanup of slug expiry eviction logic to reduce Redis memory fragmentation
+
 ## [1.3.1] - 2026-07-09
 - Added configurable slug length via environment variable for shorter or longer codes
 - Improved error responses to include a machine-readable error code field
