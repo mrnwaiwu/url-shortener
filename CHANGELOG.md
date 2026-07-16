@@ -6,6 +6,11 @@
 - Planned: user-facing dashboard for link management
 - Planned: webhook support for link-click events
 
+## [1.3.3] - 2026-07-16
+- Added webhook delivery retry logic with exponential backoff for failed click-event notifications
+- Improved slug validation to reject homoglyph sequences that could spoof trusted domains
+- Minor refactor of the analytics aggregation layer to batch Redis reads under high load
+
 ## [1.3.2] - 2026-07-13
 - Added optional link aliasing via user-provided vanity slugs with conflict detection
 - Improved redirect latency by pre-warming slug cache on service startup
